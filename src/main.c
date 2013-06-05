@@ -46,10 +46,21 @@ int main(int argc, char **argv){
 	struct GenericMemoryManager *mm = GenericMemoryManager_new(sizeof(int));
 	int *i = mm->malloc(mm);
 	*i = 42;
-	printf("i=%d\n", *i);
+	
+	int *j = mm->malloc(mm);
+	*j = 8;
+	
+	printf("i=%d j=%d\n", *i, *j);
+	
+	
+	GenericMemoryManager_print_stats(mm);	
+	
+	mm->free(mm, j);
 	mm->free(mm, i);
 	
 	GenericMemoryManager_print_stats(mm);
+	
+	GenericMemoryManager_delete(mm);
 	
 	return 0;
 } 
