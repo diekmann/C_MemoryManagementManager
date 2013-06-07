@@ -42,4 +42,22 @@ struct GenericMemoryManager* GenericMemoryManager_new(size_t);
 void GenericMemoryManager_delete(struct GenericMemoryManager *);
 void GenericMemoryManager_print_stats(struct GenericMemoryManager*);
 
+
+
+#define DEFINETYPEDMEMEORYMANAGER( name, type ) \
+struct MemoryManger_ ## name ## _ ## type \
+{ \
+	struct GenericMemoryManager *mm;\
+}
+
+
+#define TYPETYPEDMEMEORYMANAGER( name, type ) \
+struct MemoryManger_ ## name ## _ ## type
+
+#define NEWTYPEDMEMEORYMANAGER( varname, name, type, memorysize ) \
+struct MemoryManger_ ## name ## _ ## type varname;\
+varname.mm = GenericMemoryManager_new(memorysize)\
+
+
+
 #endif /* MEMMANAGEMAN */

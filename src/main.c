@@ -29,6 +29,9 @@
  *
  */
 
+
+DEFINETYPEDMEMEORYMANAGER( ijmanager, int );
+
 /**
  * @brief The ultimate main function
  * @param argc the argument count
@@ -43,24 +46,32 @@ int main(int argc, char **argv){
 	
 	printf("gcd of 8, 4 is %d\n", gcd(8,4));
 	
-	struct GenericMemoryManager *mm = GenericMemoryManager_new(sizeof(int));
-	int *i = mm->malloc(mm);
+	
+	NEWTYPEDMEMEORYMANAGER( mmij, ijmanager, int, sizeof(int) );
+	// mmij is now of type struct MemoryManger_ijmanager_int mmij
+	// this is a _typed_ memory manager for ints of size sizeof(int)
+	// mmij.mm access the memory manager
+	// it is as simple as shown below
+	
+	
+	// TODO: actually it returns void*, make it return int*
+	int *i = mmij.mm->malloc(mmij.mm);
 	*i = 42;
 	
-	int *j = mm->malloc(mm);
+	int *j = mmij.mm->malloc(mmij.mm);
 	*j = 8;
 	
 	printf("i=%d j=%d\n", *i, *j);
 	
 	
-	GenericMemoryManager_print_stats(mm);	
+	GenericMemoryManager_print_stats(mmij.mm);	
 	
-	mm->free(mm, j);
-	mm->free(mm, i);
+	mmij.mm->free(mmij.mm, j);
+	mmij.mm->free(mmij.mm, i);
 	
-	GenericMemoryManager_print_stats(mm);
+	GenericMemoryManager_print_stats(mmij.mm);
 	
-	GenericMemoryManager_delete(mm);
+	GenericMemoryManager_delete(mmij.mm);
 	
 	return 0;
 } 
