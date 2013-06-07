@@ -44,18 +44,18 @@ void GenericMemoryManager_print_stats(struct GenericMemoryManager*);
 
 
 
-#define DEFINETYPEDMEMEORYMANAGER( name, type ) \
-struct MemoryManger_ ## name ## _ ## type \
+#define DEFINETYPEDMEMEORYMANAGER( name ) \
+struct MemoryManger_ ## name \
 { \
 	struct GenericMemoryManager *mm;\
 }
 
 
-#define TYPETYPEDMEMEORYMANAGER( name, type ) \
-struct MemoryManger_ ## name ## _ ## type
+#define TYPETYPEDMEMEORYMANAGER( name ) \
+struct MemoryManger_ ## name
 
 #define NEWTYPEDMEMEORYMANAGER( varname, name, type, memorysize ) \
-struct MemoryManger_ ## name ## _ ## type varname;\
+struct MemoryManger_ ## name varname;\
 varname.mm = GenericMemoryManager_new(memorysize)\
 
 

@@ -30,7 +30,7 @@
  */
 
 
-DEFINETYPEDMEMEORYMANAGER( ijmanager, int );
+DEFINETYPEDMEMEORYMANAGER( ij_int_manager );
 
 /**
  * @brief The ultimate main function
@@ -47,7 +47,7 @@ int main(int argc, char **argv){
 	printf("gcd of 8, 4 is %d\n", gcd(8,4));
 	
 	
-	NEWTYPEDMEMEORYMANAGER( mmij, ijmanager, int, sizeof(int) );
+	NEWTYPEDMEMEORYMANAGER( mmij, ij_int_manager, int, sizeof(int) );
 	// mmij is now of type struct MemoryManger_ijmanager_int mmij
 	// this is a _typed_ memory manager for ints of size sizeof(int)
 	// mmij.mm access the memory manager
