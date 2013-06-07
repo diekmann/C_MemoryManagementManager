@@ -126,6 +126,13 @@ void GenericMemoryManager_delete(struct GenericMemoryManager *this)
         printf("[INFO] Deleting GenericMemoryManager at %p for memory of size"
             " %zu, malloc at %p, free at %p \n", this, this->memsize, this->malloc, this->free);
     #endif
-    puts("TODO");
+    if(this->mamanged_memory_chunks != NULL){
+    	printf("[ERROR] Memory Mamanger still has managed memory chunks, cannot delete\n");
+    }else{
+    	if(this->malloc_stats != this->free_stats){
+    		printf("[ERROR] numer of frees neq number of mallocs\n");
+    	}
+    	free(this);
+    }
 }
 
