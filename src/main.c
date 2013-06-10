@@ -30,7 +30,7 @@
  */
 
 
-DEFINETYPEDMEMEORYMANAGER( ij_int_manager, int );
+DEFINETYPEDMEMEORYMANAGER( ij_int_manager, int, sizeof(int) );
 
 /**
  * @brief The ultimate main function
@@ -47,16 +47,9 @@ int main(int argc, char **argv){
 	printf("gcd of 8, 4 is %d\n", gcd(8,4));
 	
 	
-	//NEWTYPEDMEMEORYMANAGER( mmij, ij_int_manager, int, sizeof(int) );
-	// mmij is now of type struct MemoryManger_ijmanager mmij
-	// this is a _typed_ memory manager for ints of size sizeof(int)
-	// mmij.mm access the memory manager
-	// it is as simple as shown below
-	
-	struct MemoryManger_ij_int_manager *mmij = MemoryManger_ij_int_manager_new(sizeof(int));
+	struct MemoryManger_ij_int_manager *mmij = MemoryManger_ij_int_manager_new();
 	
 	
-	// TODO: actually it returns void*, make it return int*
 	int *i = mmij->malloc(mmij);
 	*i = 42;
 	

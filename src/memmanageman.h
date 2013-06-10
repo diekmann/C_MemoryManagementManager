@@ -15,10 +15,6 @@
 
 struct GenericMemoryManager;
 
-
-typedef void* (*GenericMemoryManager_malloc_f_t)(struct GenericMemoryManager*);
-typedef void  (*GenericMemoryManager_free_f_t)(struct GenericMemoryManager*, void*);
-
 struct ManagedMemoryArea
 {
 	void *start;
@@ -44,12 +40,12 @@ void GenericMemoryManager_print_stats(struct GenericMemoryManager*);
 void* GenericMemoryManager_malloc_f(struct GenericMemoryManager*);
 
 
-#define DEFINETYPEDMEMEORYMANAGER( name, type ) \
+#define DEFINETYPEDMEMEORYMANAGER( name, type, memsize ) \
 struct MemoryManger_ ## name \
 { \
 	struct GenericMemoryManager *mm;\
     type* (*malloc)(struct MemoryManger_ ## name*);\
-    GenericMemoryManager_free_f_t free;\
+    void  (*free)(struct GenericMemoryManager*, void*);\
 }; \
 \
 \
@@ -62,11 +58,9 @@ type* MemoryManager_ ## name ## _malloc_f(struct MemoryManger_ ## name* this)\
 }\
 \
 \
-struct MemoryManger_ ## name* MemoryManger_ ## name ## _new(size_t memsize)\
+struct MemoryManger_ ## name* MemoryManger_ ## name ## _new()\
 {\
-    struct GenericMemoryManager *m = malloc(sizeof(struct GenericMemoryManager));\
-    m->memsize = memsize;\
-    m->mamanged_memory_chunks = NULL;\
+    struct GenericMemoryManager *m = GenericMemoryManager_new(memsize);\
     struct MemoryManger_ ## name *mm = malloc(sizeof(struct MemoryManger_ ## name));\
     mm->mm = m;\
     mm->malloc = MemoryManager_ ## name ## _malloc_f;\
