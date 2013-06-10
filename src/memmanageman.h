@@ -38,6 +38,7 @@ void GenericMemoryManager_print_stats(struct GenericMemoryManager*);
 
 
 void* GenericMemoryManager_malloc_f(struct GenericMemoryManager*);
+void GenericMemoryManager_free_f(struct GenericMemoryManager* this, void* m);
 
 
 #define DEFINETYPEDMEMEORYMANAGER( name, type, memsize ) \
@@ -45,7 +46,8 @@ struct MemoryManger_ ## name \
 { \
 	struct GenericMemoryManager *mm;\
     type* (*malloc)(struct MemoryManger_ ## name*);\
-    void  (*free)(struct GenericMemoryManager*, void*);\
+    void  (*free)(struct MemoryManger_ ## name*, type*);\
+    void  (*delete)(struct MemoryManger_ ## name*);\
 }; \
 \
 \
@@ -56,6 +58,12 @@ type* MemoryManager_ ## name ## _malloc_f(struct MemoryManger_ ## name* this)\
     puts("TODO");\
     return m;\
 }\
+void MemoryManager_ ## name ## _free_f(struct MemoryManger_ ## name* this, type* m)\
+{\
+	assert(this != NULL);\
+	if(m == NULL) return;\
+    GenericMemoryManager_free_f(this->mm, m);\
+}\
 \
 \
 struct MemoryManger_ ## name* MemoryManger_ ## name ## _new()\
@@ -64,7 +72,8 @@ struct MemoryManger_ ## name* MemoryManger_ ## name ## _new()\
     struct MemoryManger_ ## name *mm = malloc(sizeof(struct MemoryManger_ ## name));\
     mm->mm = m;\
     mm->malloc = MemoryManager_ ## name ## _malloc_f;\
-    mm->free = NULL;\
+    mm->free = MemoryManager_ ## name ## _free_f;\
+    mm->delete = NULL;\
     return mm;\
 }\
 

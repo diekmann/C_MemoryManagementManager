@@ -61,8 +61,8 @@ int main(int argc, char **argv){
 	
 	GenericMemoryManager_print_stats(mmij->mm);	
 	
-	//mmij.mm->free(mmij.mm, j);
-	//mmij.mm->free(mmij.mm, i);
+	mmij->free(mmij, j);
+	mmij->free(mmij, i);
 	
 	GenericMemoryManager_print_stats(mmij->mm);
 	
