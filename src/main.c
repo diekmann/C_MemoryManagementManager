@@ -30,7 +30,6 @@
  */
 
 
-DEFINETYPEDMEMEORYMANAGER( ij_int_manager, int, sizeof(int) );
 
 /**
  * @brief The ultimate main function
@@ -47,8 +46,8 @@ int main(int argc, char **argv){
 	printf("gcd of 8, 4 is %d\n", gcd(8,4));
 	
 	
+	DEFINETYPEDMEMEORYMANAGER( ij_int_manager, int, sizeof(int) );
 	struct MemoryManger_ij_int_manager *mmij = MemoryManger_ij_int_manager_new();
-	
 	
 	int *i = mmij->malloc(mmij);
 	*i = 42;
