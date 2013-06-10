@@ -105,16 +105,11 @@ struct GenericMemoryManager* GenericMemoryManager_new(size_t memsize)
 {
     struct GenericMemoryManager *m = malloc(sizeof(struct GenericMemoryManager));
     m->memsize = memsize;
-    
-    
-    m->malloc = *GenericMemoryManager_malloc_f;
-    m->free = *GenericMemoryManager_free_f;
-    
     m->mamanged_memory_chunks = NULL;
     
     #ifdef DEBUG
         printf("[INFO] Created new GenericMemoryManager at %p for memory of size"
-            " %zu, malloc at %p, free at %p \n", m, m->memsize, m->malloc, m->free);
+            " %zu\n", m, m->memsize);
     #endif
     return m;
 }
@@ -124,7 +119,7 @@ void GenericMemoryManager_delete(struct GenericMemoryManager *this)
     
     #ifdef DEBUG
         printf("[INFO] Deleting GenericMemoryManager at %p for memory of size"
-            " %zu, malloc at %p, free at %p \n", this, this->memsize, this->malloc, this->free);
+            " %zu\n", this, this->memsize);
     #endif
     if(this->mamanged_memory_chunks != NULL){
     	printf("[ERROR] Memory Mamanger still has managed memory chunks, cannot delete\n");
