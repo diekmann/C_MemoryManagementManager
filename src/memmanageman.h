@@ -68,7 +68,7 @@ void MemoryManager_ ## name ## _delete_f(struct MemoryManger_ ## name* this)\
 {\
 	assert(this != NULL);\
 	GenericMemoryManager_delete(this->mm);\
-	puts("TODO: cleaup outer struct");\
+	free(this);\
 }\
 \
 \
@@ -86,12 +86,6 @@ struct MemoryManger_ ## name* MemoryManger_ ## name ## _new()\
 
 #define TYPETYPEDMEMEORYMANAGER( name ) \
 struct MemoryManger_ ## name
-
-
-
-//#define NEWTYPEDMEMEORYMANAGER( varname, name, type, memorysize ) 
-//struct MemoryManger_ ## name varname;
-//varname.mm = GenericMemoryManager_new(memorysize)
 
 
 

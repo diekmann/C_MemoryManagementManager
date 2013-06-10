@@ -31,7 +31,6 @@
 
 
 DEFINETYPEDMEMEORYMANAGER( ij_int_manager, int, sizeof(int) );
-DEFINETYPEDMEMEORYMANAGER( c_char_manager, char, sizeof(char) );
 
 /**
  * @brief The ultimate main function
@@ -68,9 +67,6 @@ int main(int argc, char **argv){
 	GenericMemoryManager_print_stats(mmij->mm);
 	
 	mmij->delete(mmij);
-	
-	struct MemoryManager_c_char_manager *mmc = MemoryManger_c_char_manager_new();
-	mmij->delete(mmc);
 	
 	return 0;
 } 
