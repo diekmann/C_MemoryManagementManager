@@ -68,6 +68,7 @@ void MemoryManager_ ## name ## _delete_f(struct MemoryManger_ ## name* this)\
 {\
 	assert(this != NULL);\
 	GenericMemoryManager_delete(this->mm);\
+	puts("TODO: cleaup outer struct");\
 }\
 \
 \
