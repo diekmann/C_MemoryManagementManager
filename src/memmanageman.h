@@ -64,6 +64,11 @@ void MemoryManager_ ## name ## _free_f(struct MemoryManger_ ## name* this, type*
 	if(m == NULL) return;\
     GenericMemoryManager_free_f(this->mm, m);\
 }\
+void MemoryManager_ ## name ## _delete_f(struct MemoryManger_ ## name* this)\
+{\
+	assert(this != NULL);\
+	GenericMemoryManager_delete(this->mm);\
+}\
 \
 \
 struct MemoryManger_ ## name* MemoryManger_ ## name ## _new()\
@@ -73,7 +78,7 @@ struct MemoryManger_ ## name* MemoryManger_ ## name ## _new()\
     mm->mm = m;\
     mm->malloc = MemoryManager_ ## name ## _malloc_f;\
     mm->free = MemoryManager_ ## name ## _free_f;\
-    mm->delete = NULL;\
+    mm->delete = MemoryManager_ ## name ## _delete_f;\
     return mm;\
 }\
 

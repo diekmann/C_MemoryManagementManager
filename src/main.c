@@ -66,7 +66,7 @@ int main(int argc, char **argv){
 	
 	GenericMemoryManager_print_stats(mmij->mm);
 	
-	//GenericMemoryManager_delete(mmij->mm);
+	mmij->delete(mmij);
 	
 	return 0;
 } 
