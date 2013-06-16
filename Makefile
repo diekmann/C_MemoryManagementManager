@@ -3,7 +3,7 @@ CFLAGS		= -ansi -std=c99 -Wall -Wextra -O2 -Werror -DDEBUG
 LIBS		= #-lcurl
 
 # all source files
-_SOURCES	= main.c hello.c util.c memmanageman.c
+_SOURCES	= main.c util.c memmanageman.c
 
 # the directories used during build
 SRCDIR		= src

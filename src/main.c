@@ -41,11 +41,6 @@ int main(int argc, char **argv){
 	UNUSED(argc)
 	UNUSED(argv)
 	
-	printf("Hello World from %s in line %d\n", __FILE__, __LINE__);
-	
-	printf("gcd of 8, 4 is %d\n", gcd(8,4));
-	
-	
 	DEFINETYPEDMEMEORYMANAGER( ij_int_manager, int, sizeof(int) );
 	struct MemoryManger_ij_int_manager *mmij = MemoryManger_ij_int_manager_new();
 	
