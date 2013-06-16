@@ -5,15 +5,9 @@
  *
  * 
  *
- * @date 0506.2013 – first implementation
+ * @date 05.06.2013 – first implementation
  *
- * @todo  sth
- *
- * @test yeah ...
- *
- * @bug may be 
- *
- * @version 0.1
+ * @version 1.0
  */
 
 #include <stdio.h>

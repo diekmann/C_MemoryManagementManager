@@ -1,14 +1,16 @@
 /**
  * @file memmanageman.c
- * @brief TODO
+ * @brief A memory management manager freamework
  * @author diekmann
  *
  * 
  *
  * @date 05.06.2013 - first implementation
+ * @date 16.06.2013 - stable testing version 0.2
  *
+ * @bug free accepts void pointers
  *
- * @version 0.1
+ * @version 0.2
  */
 
 #include <stddef.h>
