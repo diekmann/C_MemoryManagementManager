@@ -42,29 +42,29 @@ void GenericMemoryManager_free_f(struct GenericMemoryManager* this, void* m);
 
 
 #define DEFINETYPEDMEMEORYMANAGER( name, type, memsize ) \
-struct MemoryManger_ ## name \
+struct MemoryManager_ ## name \
 { \
 	struct GenericMemoryManager *mm;\
-    type* (*malloc)(struct MemoryManger_ ## name*);\
-    void  (*free)(struct MemoryManger_ ## name*, type*);\
-    void  (*delete)(struct MemoryManger_ ## name*);\
+    type* (*malloc)(struct MemoryManager_ ## name*);\
+    void  (*free)(struct MemoryManager_ ## name*, type*);\
+    void  (*delete)(struct MemoryManager_ ## name*);\
 }; \
 \
 \
-type* MemoryManager_ ## name ## _malloc_f(struct MemoryManger_ ## name* this)\
+type* MemoryManager_ ## name ## _malloc_f(struct MemoryManager_ ## name* this)\
 {\
 	assert(this != NULL);\
     type *m = GenericMemoryManager_malloc_f(this->mm);\
     puts("TODO");\
     return m;\
 }\
-void MemoryManager_ ## name ## _free_f(struct MemoryManger_ ## name* this, type* m)\
+void MemoryManager_ ## name ## _free_f(struct MemoryManager_ ## name* this, type* m)\
 {\
 	assert(this != NULL);\
 	if(m == NULL) return;\
     GenericMemoryManager_free_f(this->mm, m);\
 }\
-void MemoryManager_ ## name ## _delete_f(struct MemoryManger_ ## name* this)\
+void MemoryManager_ ## name ## _delete_f(struct MemoryManager_ ## name* this)\
 {\
 	assert(this != NULL);\
 	GenericMemoryManager_delete(this->mm);\
@@ -72,10 +72,10 @@ void MemoryManager_ ## name ## _delete_f(struct MemoryManger_ ## name* this)\
 }\
 \
 \
-struct MemoryManger_ ## name* MemoryManger_ ## name ## _new()\
+struct MemoryManager_ ## name* MemoryManager_ ## name ## _new()\
 {\
     struct GenericMemoryManager *m = GenericMemoryManager_new(memsize);\
-    struct MemoryManger_ ## name *mm = malloc(sizeof(struct MemoryManger_ ## name));\
+    struct MemoryManager_ ## name *mm = malloc(sizeof(struct MemoryManager_ ## name));\
     mm->mm = m;\
     mm->malloc = MemoryManager_ ## name ## _malloc_f;\
     mm->free = MemoryManager_ ## name ## _free_f;\
@@ -85,7 +85,7 @@ struct MemoryManger_ ## name* MemoryManger_ ## name ## _new()\
 
 
 #define TYPETYPEDMEMEORYMANAGER( name ) \
-struct MemoryManger_ ## name
+struct MemoryManager_ ## name
 
 
 

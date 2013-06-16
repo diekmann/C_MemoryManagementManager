@@ -36,7 +36,7 @@ int main(int argc, char **argv){
 	UNUSED(argv)
 	
 	DEFINETYPEDMEMEORYMANAGER( ij_int_manager, int, sizeof(int) );
-	struct MemoryManger_ij_int_manager *mmij = MemoryManger_ij_int_manager_new();
+	struct MemoryManager_ij_int_manager *mmij = MemoryManager_ij_int_manager_new();
 	
 	int *i = mmij->malloc(mmij);
 	*i = 42;

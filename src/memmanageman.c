@@ -124,7 +124,7 @@ void GenericMemoryManager_delete(struct GenericMemoryManager *this)
             " %zu\n", this, this->memsize);
     #endif
     if(this->mamanged_memory_chunks != NULL){
-    	printf("[ERROR] Memory Mamanger still has managed memory chunks, cannot delete\n");
+    	printf("[ERROR] Memory Mamanager still has managed memory chunks, cannot delete\n");
     }else{
     	if(this->malloc_stats != this->free_stats){
     		printf("[ERROR] numer of frees neq number of mallocs\n");
