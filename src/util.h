@@ -1,9 +1,6 @@
 #ifndef UTIL_H
 #define UTIL_H
 
-int gcd(int a, int b);
-
-
 /**
  * @brief mark an variable unused
  * 
