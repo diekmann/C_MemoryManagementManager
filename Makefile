@@ -24,6 +24,7 @@ SOURCES 	= $(patsubst %,$(SRCDIR)/%,$(_SOURCES))
 all: clean $(OBJECTS) $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)
+	./buildcircle.py
 	$(CC) -o $(BINDIR)/$(EXECUTABLE) $(CFLAGS) $(OBJECTS) $(LIBS)
 
 $(EXECUTABLE)_static: $(OBJECTS)
